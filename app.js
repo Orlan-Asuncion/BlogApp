@@ -1,11 +1,20 @@
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var expressSanitizer= require("express-sanitizer");
-var mongoose   = require("mongoose");
+
 var express = require("express");
 var app = express();
-
-mongoose.connect("mongodb://localhost:/BlogApp");
+var port = process.env.PORT || 3000;
+// mongoose.connect("mongodb://localhost:27017/BlogApp", {useNewUrlParser: true});
+var mongoose   = require("mongoose");
+      DATABASE_NAME = 'BlogApp',
+      mongoURI = `mongodb://localhost:27017/${DATABASE_NAME};`    
+//Set up promises with mongoose
+mongoose.Promise = Promise; 
+//if there's a shell environment variable named MONGODB_URI (deployed), use it; otherwise, connect to localhost
+var dbUrl = process.env.MONGODB_URI || mongoURI;
+// mongoose.connect(MONGOLAB_URI || mongoURI, { useNewUrlParser: true });
+mongoose.connect(dbUrl, { useNewUrlParser: true });
 app.set("view engine", "ejs");
 app.use(express.static("/public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -96,6 +105,6 @@ app.delete("/blogs/:id", function(req, res){
     });    
 });
 
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(port, process.env.IP, function(){
     console.log("Server is running");
 });
