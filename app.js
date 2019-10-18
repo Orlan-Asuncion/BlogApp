@@ -8,7 +8,7 @@ var port = process.env.PORT || 3000;
 // mongoose.connect("mongodb://localhost:27017/BlogApp", {useNewUrlParser: true});
 var mongoose   = require("mongoose");
       DATABASE_NAME = 'BlogApp',
-      mongoURI = `mongodb://localhost:27017/${DATABASE_NAME};`    
+      mongoURI = " mongodb://localhost:27017/${DATABASE_NAME};"    
 //Set up promises with mongoose
 mongoose.Promise = Promise; 
 //if there's a shell environment variable named MONGODB_URI (deployed), use it; otherwise, connect to localhost

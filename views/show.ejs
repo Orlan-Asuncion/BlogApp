@@ -6,8 +6,8 @@
              <img class="ui centered rounded image" src="<%= blog.image %>">
          </div>
          <div class="content">
-             <p><%-blog.body%></p>
-           <span><%= blog.created.toDateString() %></span>  
+               <p><%-blog.body%></p>
+               <span><%= blog.created.toDateString() %></span>  
          </div>
          <a class="ui orange basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
          <form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
