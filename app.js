@@ -16,7 +16,7 @@ var dbUrl = process.env.MONGODB_URI || mongoURI;
 // mongoose.connect(MONGOLAB_URI || mongoURI, { useNewUrlParser: true });
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 app.set("view engine", "ejs");
-app.use(express.static("/public"));
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
@@ -52,7 +52,7 @@ app.get("/blogs/new", function(req, res){
 app.post("/blogs", function(req, res){
     //create blog
     req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.create(req.body.blogSchema, function(err, newBlog){
+    Blog.create(req.body.blog, function(err, newBlog){
             if(err){
                 res.render("new");
             } else {
